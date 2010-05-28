@@ -1,0 +1,45 @@
+h1. DocX Builder
+
+_DocX Builder_ is a small utility to help you compose a docx (Microsoft Word 2007) based on a template's XML.
+
+The @slice_template.rb@ can be used separately for non-docx applications.
+
+The steps:
+# Create a docx file with _Microsoft Word_ or _OpenOffice.org_
+# Unzip it (the docx file is actually a ZIP package)
+# Create your template from @word/document.xml@
+# Open the template and reformat it (I used RubyMine)
+# Find the parts you need to generate programmatically, and mark them up with <!-- BEGIN SOMETHING --> ... <!-- END SOMETHING -->, see @example/plan_report_template.xml@
+# Remove the formatting (compact the XML)
+# Create your builder, see @example.rb@
+
+h2. The example explained
+
+pre.
+  _____head______ _________area_______________________________________ _foot_
+ |               |                                                    |      |
+ |               |                ________goal________________________|      |
+ |               |               |                                    |      |
+ |               |               |                _______objective____|      |
+ |               |               |               |                    |      |
+ |  (Plan Name)  |  (Area Name)  |  (Goal Name)  |  (Objective Name)  |      |
+ _____________________________________________________________________________
+                                  XML DOCUMENT
+
+You can assign a text to a placeholder:
+
+pre.
+ template['head']['Plan Name'] = @plan.name
+
+Or you can replace a slice with a string, that can be composed by multiplying that slice:
+
+pre.
+  template['area'] =
+    @plan.areas.map do |area|
+
+      area_slice = template['area'].clone
+      area_slice['Area Name'] = area.description
+      area_slice['goal'] = '...'
+  end
+
+See @example.rb@
