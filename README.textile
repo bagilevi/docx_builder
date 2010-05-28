@@ -15,7 +15,7 @@ The steps:
 
 h2. The example explained
 
-pre.
+<pre>
   _____head______ _________area_______________________________________ _foot_
  |               |                                                    |      |
  |               |                ________goal________________________|      |
@@ -25,11 +25,13 @@ pre.
  |  (Plan Name)  |  (Area Name)  |  (Goal Name)  |  (Objective Name)  |      |
  _____________________________________________________________________________
                                   XML DOCUMENT
+</pre>
 
 You can assign a text to a placeholder:
 
-pre.
+<pre>
  template['head']['Plan Name'] = @plan.name
+</pre>
 
 Or you can replace a slice with a string, that can be composed by multiplying that slice:
 
