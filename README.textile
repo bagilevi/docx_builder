@@ -35,7 +35,7 @@ You can assign a text to a placeholder:
 
 Or you can replace a slice with a string, that can be composed by multiplying that slice:
 
-pre.
+<pre>
   template['area'] =
     @plan.areas.map do |area|
 
@@ -43,5 +43,6 @@ pre.
       area_slice['Area Name'] = area.description
       area_slice['goal'] = '...'
   end
+</pre>
 
 See @example.rb@
